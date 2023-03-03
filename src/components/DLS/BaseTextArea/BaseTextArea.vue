@@ -1,7 +1,7 @@
 <template>
   <div>
-    <label v-if="label" :for="id" class="font-bold block text-white"> {{ label }} </label>
-    <textarea v-bind="$attrs" :value="modelValue" @input="onInput" class="text-black" />
+    <label v-if="label" :for="id" class="font-bold block text-white mb-2"> {{ label }} </label>
+    <textarea :id="id" v-bind="$attrs" :value="modelValue" @input="onInput" class="text-black" />
   </div>
 </template>
 
@@ -9,6 +9,7 @@
 interface IProps {
   modelValue: string
   label?: string
+  id: string
 }
 
 interface Emits {
@@ -23,5 +24,11 @@ const onInput = (e) => {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+textarea{
+  @apply p-2;
+}
+textarea[disabled] {
+  @apply bg-transparent p-0;
+}
 </style>

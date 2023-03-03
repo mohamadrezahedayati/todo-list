@@ -27,8 +27,8 @@ export const priorities = [
         value: 'urgent'
     },
     {
-        name: 'omportant and urgent',
-        value: 'important and urgent'
+        name: 'normal',
+        value: 'normal'
     },
     {
         name: 'neither',

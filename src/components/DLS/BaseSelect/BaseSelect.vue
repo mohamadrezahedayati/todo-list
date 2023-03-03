@@ -65,38 +65,21 @@ const updateValue = (optionValue) => {
 
 <style lang="scss" scoped>
 .select-box {
-  position: relative;
+  @apply z-10 relative;
   width: 13rem;
   cursor: pointer;
 
   &__selected-item {
-    background-color: red;
-    color: white;
-    box-shadow: 1px 3px 5px silver;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .arrow-icon {
-      width: 0.625rem;
-      height: 0.625rem;
-      path {
-        background-color: darkgoldenrod;
-        stroke: var(--color-text);
-        stroke-width: 65px;
-      }
-    }
+    @apply bg-zinc-600 text-zinc-200 border-none rounded leading-tight w-full flex items-center justify-between;
+    padding: .6rem 1rem;
   }
 
   &__options {
+    @apply bg-zinc-400 text-zinc-200;
     position: absolute;
-    background-color: forestgreen;
-    color: var(--color-text);
     display: grid;
     left: 0;
     right: 0;
-    box-shadow: 1px 3px 5px seagreen;
     padding: 0.625rem;
     top: 50px;
 
@@ -112,8 +95,5 @@ const updateValue = (optionValue) => {
       visibility: hidden;
     }
   }
-}
-.rotate-180 {
-  transform: rotate(180deg);
 }
 </style>

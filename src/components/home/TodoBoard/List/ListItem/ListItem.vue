@@ -1,50 +1,56 @@
 <template>
-  <div>
-    <div class="flex justify-center">
-      <div
-        class="block w-[70%] rounded-lg p-6 shadow-lg bg-slate-800"
-        :class="mapper[localTask.color]"
-      >
-        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-          title: {{ localTask.title }}
-        </h5>
-        <BaseTextArea
+  <div class="flex justify-center pb-4">
+    <div
+      class="block w-[70%] rounded-lg p-6 shadow-lg bg-slate-800"
+      :class="mapper[localTask.color]"
+    >
+      <h5 class="text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 mb-2">
+        title: {{ localTask.title }}
+      </h5>
+      <BaseTextArea
+        :id="localTask.id"
+        :disabled="!localTask.isActive"
+        v-model="localTask.description"
+        label="description"
+        class="text-base text-black w-full"
+      />
+      <div class="flex justify-center items-center mt-2">
+        <BaseSelect
+          :id="localTask.id"
           :disabled="!localTask.isActive"
-          v-model="localTask.description"
-          label="description"
-          class="text-base text-black w-full"
+          v-model="localTask.color"
+          :options="colors"
+          text="name"
+          name-value="value"
         />
-        <div class="flex">
-          <BaseSelect
-            :id="localTask.id"
-            :disabled="!localTask.isActive"
-            v-model="localTask.color"
-            :options="colors"
-            text="name"
-            name-value="value"
-          />
-          <BaseSelect
-            :id="localTask.id"
-            :disabled="!localTask.isActive"
-            v-model="localTask.priority"
-            :options="priorities"
-            text="name"
-            name-value="value"
-          />
-        </div>
-        <BaseButton v-if="localTask.isActive" @click="updateItem"> ✅ </BaseButton>
+        <Datepicker v-model="localTask.date" :disabled="!localTask.isActive" />
+        <BaseSelect
+          :id="localTask.id"
+          :disabled="!localTask.isActive"
+          v-model="localTask.priority"
+          :options="priorities"
+          text="name"
+          name-value="value"
+        />
+      </div>
+      <div class="mt-2">
+        <BaseButton v-if="localTask.isActive" @click="updateItem" class="mr-2 p-1"> ✅ </BaseButton>
+        <BaseButton v-if="!localTask.isActive" @click="updateItem" class="mr-2 p-1"> 🖊 </BaseButton>
+        <BaseButton v-if="localTask.isActive" @click="removeItem" class="mr-2 p-1"> ❌ </BaseButton>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, unref, watch } from 'vue'
+import { ref, unref } from 'vue'
 import { useStore } from 'vuex'
+import Datepicker from '@vuepic/vue-datepicker'
 import BaseSelect from '@/components/DLS/BaseSelect/BaseSelect.vue'
 import BaseTextArea from '@/components/DLS/BaseTextArea/BaseTextArea.vue'
 import BaseButton from '@/components/DLS/BaseButton/BaseButton.vue'
 import { colors, priorities } from '@/constants/index.ts'
+import '@vuepic/vue-datepicker/dist/main.css'
 
 interface IProps {
   task: {
@@ -60,18 +66,20 @@ interface IProps {
 
 const store = useStore()
 const props = defineProps<IProps>()
-const localTask = ref({...JSON.parse(JSON.stringify(props.task))})
+const localTask = ref({ ...JSON.parse(JSON.stringify(props.task)) })
 const mapper = {
   red: '!bg-red-500',
   green: '!bg-green-500',
   gray: '!bg-gray-500',
   blue: '!bg-blue-500'
 }
-
 const updateItem = () => {
-  console.log(unref(localTask))
-  localTask.value.isActive = false
+  localTask.value.isActive = !localTask.value.isActive
   store.dispatch('tasks/updateItem', unref(localTask))
+}
+
+const removeItem = () =>{
+  store.dispatch('tasks/removeItem', unref(localTask))
 }
 </script>
 

@@ -5,6 +5,9 @@ const state = {
 const getters = {
     getItemById: (state) => (id) => {
         return state.items.find(item => item.id === id)
+    },
+    getIndexItemById: (state) => (id) => {
+        return state.items.findIndex(item => item.id === id)
     }
 }
 
@@ -15,6 +18,10 @@ const mutations = {
     UPDATE_ITEM(state, { getters, item }) {
         const oldItem = getters.getItemById(item.id);
         Object.assign(oldItem, item)
+    },
+    REMOVE_ITEM (state, { getters, item }){
+        const indexItem = getters.getIndexItemById(item.id);
+        state.items.splice(indexItem,1);
     }
 }
 
@@ -24,6 +31,9 @@ const actions = {
     },
     updateItem({ commit, getters }, item) {
         commit('UPDATE_ITEM', { item, getters })
+    },
+    removeItem({ commit, getters }, item) {
+        commit('REMOVE_ITEM', { item, getters })
     }
 }
 
