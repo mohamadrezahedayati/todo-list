@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="text-orange-700">
         <TextBar />
         <List />
     </div>
