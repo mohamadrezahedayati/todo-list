@@ -15,24 +15,15 @@
 
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue'
-const props = defineProps<{
-  id: {
-    type: String
-    default: ''
-  }
-  label: {
-    type: String
-    default: ''
-  }
-  modelValue: {
-    type: [String, Number]
-    default: ''
-  }
-  type: {
-    type: String
-    default: 'text'
-  }
-}>()
+
+interface IProps {
+  id: string
+  label: string
+  modelValue: string | Number
+  type: string
+}
+
+withDefaults(defineProps<IProps>(), { type: 'text'})
 
 interface Emits {
   (e: 'update:modelValue', value: number | string): void
