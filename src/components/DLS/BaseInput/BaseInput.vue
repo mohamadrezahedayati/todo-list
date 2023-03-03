@@ -9,6 +9,7 @@
       :value="modelValue"
       @input="updateInput"
       class="border w-full p-1"
+      v-bind="$attrs"
     />
   </div>
 </template>
@@ -17,8 +18,8 @@
 import { defineProps, defineEmits } from 'vue'
 
 interface IProps {
-  id: string
-  label: string
+  id?: string
+  label?: string
   modelValue: string | Number
   type: string
 }

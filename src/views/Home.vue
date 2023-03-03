@@ -1,18 +1,13 @@
 <template>
-  <div>
-    <BaseInput label="test" v-model="value" />
-    <BaseCheckBox fieldId="test" :checked="true" />
-    <BaseButton class="bg-red-400">
-        test btn
-    </BaseButton>
+  <div class="w-full bg-white">
+    <TodoBoard />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseInput from '../components/DLS/BaseInput/BaseInput.vue'
+import TodoBoard from '../components/home/TodoBoard/TodoBoard.vue'
 import BaseCheckBox from '../components/DLS/BaseCheckBox/BaseCheckBox.vue'
-import BaseButton from '../components/DLS/BaseButton/BaseButton.vue'
 
 const value = ref(null)
 </script>
