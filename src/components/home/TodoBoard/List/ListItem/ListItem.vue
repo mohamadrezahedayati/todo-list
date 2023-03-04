@@ -23,6 +23,7 @@
           text="name"
           name-value="value"
           class="mr-2"
+          defaultText="color"
         />
         <Datepicker v-model="localTask.date" :disabled="!localTask.isActive" />
         <BaseSelect
@@ -33,6 +34,7 @@
           text="name"
           name-value="value"
           class="ml-2"
+          defaultText="priority"
         />
       </div>
       <div class="mt-2">
