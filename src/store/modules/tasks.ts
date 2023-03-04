@@ -1,5 +1,8 @@
+import { useStorage } from '@vueuse/core'
+const items = useStorage('todo-list-storage', [])
+
 const state = {
-    items: [],
+    items,
     searchValue: ''
 }
 
