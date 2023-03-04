@@ -88,6 +88,7 @@ const updateValue = (optionValue) => {
     }
 
     label {
+      @apply w-full flex;
       cursor: pointer;
     }
 

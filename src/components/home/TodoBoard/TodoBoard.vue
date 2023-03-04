@@ -1,6 +1,6 @@
 <template>
-    <div class="text-orange-700">
-        <TextBar />
+    <div class="flex h-[100vh] lg:h-[90vh] flex-col items-center">
+        <TextBar class="sticky top-0 z-20 p-3 bg-amber-400 w-full items-stretch"/>
         <List />
     </div>
 </template>

@@ -1,5 +1,6 @@
 const state = {
-    items: []
+    items: [],
+    searchValue: ''
 }
 
 const getters = {
@@ -8,6 +9,9 @@ const getters = {
     },
     getIndexItemById: (state) => (id) => {
         return state.items.findIndex(item => item.id === id)
+    },
+    getFiltredItems: (state) => {
+        return state.searchValue ? state.items.filter(item => item.title.includes(state.searchValue)) : state.items
     }
 }
 
@@ -19,9 +23,12 @@ const mutations = {
         const oldItem = getters.getItemById(item.id);
         Object.assign(oldItem, item)
     },
-    REMOVE_ITEM (state, { getters, item }){
+    REMOVE_ITEM(state, { getters, item }) {
         const indexItem = getters.getIndexItemById(item.id);
-        state.items.splice(indexItem,1);
+        state.items.splice(indexItem, 1);
+    },
+    SET_SEARCH_VALUE(state, searchValue) {
+        state.searchValue = searchValue
     }
 }
 
@@ -34,6 +41,9 @@ const actions = {
     },
     removeItem({ commit, getters }, item) {
         commit('REMOVE_ITEM', { item, getters })
+    },
+    searchItem({ commit }, searchValue) {
+        commit('SET_SEARCH_VALUE', searchValue)
     }
 }
 

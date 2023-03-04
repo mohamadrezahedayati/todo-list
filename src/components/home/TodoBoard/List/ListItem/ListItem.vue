@@ -1,7 +1,7 @@
 <template>
-  <div class="flex justify-center pb-4">
+  <div class="flex justify-center pb-4 w-full">
     <div
-      class="block w-[70%] rounded-lg p-6 shadow-lg bg-slate-800"
+      class="block w-[90%] lg:w-[70%] rounded-lg p-6 shadow-lg bg-slate-800"
       :class="mapper[localTask.color]"
     >
       <h5 class="text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 mb-2">
@@ -22,6 +22,7 @@
           :options="colors"
           text="name"
           name-value="value"
+          class="mr-2"
         />
         <Datepicker v-model="localTask.date" :disabled="!localTask.isActive" />
         <BaseSelect
@@ -31,6 +32,7 @@
           :options="priorities"
           text="name"
           name-value="value"
+          class="ml-2"
         />
       </div>
       <div class="mt-2">

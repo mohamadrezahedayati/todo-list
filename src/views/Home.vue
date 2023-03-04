@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full bg-white">
+  <div class="w-full bg-white relative overflow-y-auto rounded-xl">
     <TodoBoard />
   </div>
 </template>

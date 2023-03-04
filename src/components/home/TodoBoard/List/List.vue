@@ -1,5 +1,7 @@
 <template>
-  <ListItem v-for="task in tasks" :key="task.id" :task="task" />
+  <div class="w-full">
+    <ListItem v-for="task in tasks" :key="task.id" :task="task" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -8,7 +10,7 @@ import { useStore } from 'vuex'
 import { computed } from 'vue'
 
 const store = useStore()
-const tasks = computed(() => store.state.tasks.items)
+const tasks = computed(() => store.getters['tasks/getFiltredItems'])
 </script>
 
 <style scoped>
