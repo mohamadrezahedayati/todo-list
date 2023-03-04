@@ -1,7 +1,8 @@
 <template>
     <button
       v-bind="$attrs"
-      class="button"
+      class="button btn"
+      data-testId="button"
     >
       <slot />
     </button>
