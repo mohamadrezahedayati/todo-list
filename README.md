@@ -12,6 +12,7 @@
 - Vite
 - Eslint
 - Vitest
+- Docker
 - pnpm
 - prettier
 - tailwind
