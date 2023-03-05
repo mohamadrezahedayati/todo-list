@@ -10,7 +10,7 @@
           type="text"
         />
       </div>
-      <BaseButton class="bg-red-400 p-2 rounded-tr-md rounded-br-md text-gray-800" @click="addItem">
+      <BaseButton class="bg-indigo-300 p-2 rounded-tr-md rounded-br-md text-gray-800" @click="addItem">
         add
       </BaseButton>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center pb-4 w-full">
     <div
-      class="block w-[90%] lg:w-[70%] rounded-lg p-6 shadow-lg bg-slate-800"
+      class="block w-[90%] lg:w-[70%] rounded-lg p-6 shadow-lg bg-slate-700"
       :class="mapper[localTask.color]"
     >
       <h5 class="text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 mb-2">
