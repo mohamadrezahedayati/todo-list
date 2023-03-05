@@ -1,23 +1,29 @@
 <template>
   <div class="flex justify-between mb-3 items-center">
     <div class="flex w-1/2">
-      <BaseInput
-        placeholder="add title item..."
-        v-model="title"
-        @keypress.enter="addItem"
-        class="text-black rounded-tl-md rounded-bl-md flex"
-        type="text"
-      />
-      <BaseButton class="bg-gray-700 p-2 rounded-tr-md rounded-br-md" @click="addItem"> add </BaseButton>
+      <div class="text-black flex">
+        <BaseInput
+          placeholder="add title item..."
+          v-model="title"
+          @keypress.enter="addItem"
+          class="rounded-tl-md rounded-bl-md"
+          type="text"
+        />
+      </div>
+      <BaseButton class="bg-red-400 p-2 rounded-tr-md rounded-br-md text-gray-800" @click="addItem">
+        add
+      </BaseButton>
     </div>
     <div class="flex w-1/2 place-content-end ml-1">
-      <BaseInput
-        placeholder="search item..."
-        :modelValue="search"
-        @update:modelValue="searchItem($event)"
-        class="flex items-stretch text-black rounded-md"
-        type="text"
-      />
+      <div class="flex items-stretch text-black">
+        <BaseInput
+          placeholder="search item..."
+          :modelValue="search"
+          @update:modelValue="searchItem($event)"
+          class="rounded-md"
+          type="text"
+        />
+      </div>
     </div>
   </div>
 </template>

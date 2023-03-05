@@ -1,17 +1,15 @@
 <template>
-  <div>
-    <label v-if="label" :for="id" class="font-bold block">
-      {{ label }}
-    </label>
-    <input
-      :id="id"
-      :type="type"
-      :value="modelValue"
-      @input="updateInput"
-      class="border w-full p-1"
-      v-bind="$attrs"
-    />
-  </div>
+  <label v-if="label" :for="id" class="font-bold block">
+    {{ label }}
+  </label>
+  <input
+    :id="id"
+    :type="type"
+    :value="modelValue"
+    @input="updateInput"
+    v-bind="$attrs"
+    class="border w-full p-1"
+  />
 </template>
 
 <script setup lang="ts">
@@ -24,7 +22,7 @@ interface IProps {
   type: string
 }
 
-withDefaults(defineProps<IProps>(), { type: 'text'})
+withDefaults(defineProps<IProps>(), { type: 'text' })
 
 interface Emits {
   (e: 'update:modelValue', value: number | string): void
