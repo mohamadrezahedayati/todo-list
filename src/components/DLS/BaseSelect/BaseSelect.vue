@@ -1,18 +1,16 @@
 <template>
   <div class="select-box" :class="disabled ? null : 'cursor-pointer'">
-    <div class="select-box__selected-item" @click="disabled ? null : showOptions()">
+    <div
+      class="select-box__selected-item"
+      data-testId="selected-item"
+      @click="disabled ? null : showOptions()"
+    >
       <span> {{ getSelectedOption }} </span>
       <ArrowDown v-if="!disabled" class="arrow-icon" :class="isOpenOptions ? `rotate-180` : null" />
     </div>
-    <div
-      v-show="isOpenOptions"
-      class="select-box__options options"
-    >
-      <div v-for="option in options" :key="option.index" class="option">
-        <label
-          :for="`${id}${option[nameValue]}`"
-          @click="hideOptions()"
-        >
+    <div v-show="isOpenOptions" class="select-box__options options">
+      <div v-for="option in options" :key="option.index" class="option" data-testId="option">
+        <label :for="`${id}${option[nameValue]}`" @click="hideOptions()">
           <span class="pl-2">{{ option[text] }}</span>
           <input
             :id="`${id}${option[nameValue]}`"
@@ -37,8 +35,8 @@ interface IProps {
   text: string
   nameValue: string
   options: any[]
-  disabled: boolean,
-  defaultText:''
+  disabled: boolean
+  defaultText: ''
 }
 
 interface Emits {

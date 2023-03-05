@@ -6,38 +6,24 @@ const createWrapper = (options = {}) => {
     return shallowMount(BaseSelect, options)
 }
 
-describe('rendering', () => {
-    it('should show label when pass label to component', () => {
-        const wrapper = createWrapper({
-            props: {
-                label: 'test label'
-            }
-        });
-        expect(wrapper.html()).toContain('test label')
+describe('BaseSelect.vue', () => {
+    it('when passed options, should render values', async () => {
+        const wrapper = createWrapper();
+        const optionsList = [{ name: 'a', value: 'a' }, { name: 'b', value: 'b' }]
+        await wrapper.setProps({
+            options: optionsList
+        })
+        expect(wrapper.findAll('[data-testId="option"]').length).toEqual(optionsList.length)
     });
 
-    it("shold the same label's for attr with input's id attr", () => {
-        const wrapper = createWrapper({
-            props: {
-                label: 'label for exist',
-                id: 'id12345'
-            }
-        });
-
-        expect(wrapper.get('label').attributes('for')).toEqual(wrapper.get('input').attributes('id'));
-    });
+    it('when user click on element , should open options list', async () => {
+        const wrapper = createWrapper();
+        const optionsList = [{ name: 'a', value: 'a' }, { name: 'b', value: 'b' }]
+        await wrapper.setProps({
+          options: optionsList
+        })
+        const selectedItemElement = wrapper.find('[data-testId="selected-item"]')
+        await selectedItemElement.trigger('click')
+        expect(wrapper.vm.isOpenOptions).toBe(true)
+      })
 });
-
-describe('functionality', () => {
-    // it("when type something text, should change value that", async () => {
-    //     const wrapper = createWrapper({
-    //         props: {
-    //             modelValue: 'hello',
-    //             type: 'text'
-    //         }
-    //     });
-    //     await wrapper.setProps({ modelValue: 'set props' })
-    //     await wrapper.find('input[type="text"]').setValue('hello!')
-    //     expect(wrapper.attributes()).toEqual({})
-    // })
-})
