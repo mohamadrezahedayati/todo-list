@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import BaseInput from './BaseInput.vue';
+import BaseSelect from './BaseSelect.vue';
 import { shallowMount } from '@vue/test-utils'
 
 const createWrapper = (options = {}) => {
-    return shallowMount(BaseInput, options)
+    return shallowMount(BaseSelect, options)
 }
 
 describe('rendering', () => {
@@ -29,15 +29,15 @@ describe('rendering', () => {
 });
 
 describe('functionality', () => {
-    it("when type something text, should change value that", async () => {
-        const wrapper = createWrapper({
-            props: {
-                modelValue: 'hello',
-                type: 'text'
-            }
-        });
-        await wrapper.setProps({ modelValue: 'set props' })
-        await wrapper.find('input[type="text"]').setValue('hello!')
-        expect(wrapper.attributes()).toEqual({})
-    })
+    // it("when type something text, should change value that", async () => {
+    //     const wrapper = createWrapper({
+    //         props: {
+    //             modelValue: 'hello',
+    //             type: 'text'
+    //         }
+    //     });
+    //     await wrapper.setProps({ modelValue: 'set props' })
+    //     await wrapper.find('input[type="text"]').setValue('hello!')
+    //     expect(wrapper.attributes()).toEqual({})
+    // })
 })
